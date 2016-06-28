@@ -26,11 +26,11 @@
 					"name": "jupyterhub",
 					"image": "jupyter/jupyterhub",
 					"ports": [{
-						"containerPort": 8000,
-						"hostPort": 8000	
+						"containerPort": 8888,
+						"hostPort": 8888	
 					}],
 					"volumeMounts": [{
-						"mountPath": "/srv/jupyterhub/",
+						"mountPath": "/notebooks",
 						"name": "jupyterhub-disk"
 					}],
 					"resources": {
