@@ -1,0 +1,18 @@
+{
+	"kind": "Service",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "jupyterhub-service"
+	},
+ 	"spec": {
+		"ports": [{
+			"port": 80,
+			"targetPort": 8000	
+		}],
+		"selector": {
+      		"server": "prod",
+			"app": "jupyterhub"
+    	},
+    	"type": "LoadBalancer"
+	}
+}

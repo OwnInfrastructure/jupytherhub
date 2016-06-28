@@ -1,0 +1,59 @@
+{
+	"kind": "ReplicationController",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "jupyterhub-rc",
+		"labels": {
+			"server": "prod",
+			"app": "jupyterhub"
+		}
+	},
+ 	"spec": {
+		"replicas": 1,		
+		"selector": {
+			"server": "prod",
+      			"app": "jupyterhub"
+    		},
+		"template": {	
+			"metadata": {
+				"labels": {
+					"server": "prod",
+					"app": "jupyterhub"
+			 	}
+			},
+			"spec": {
+				"containers": [{
+					"name": "jupyterhub",
+					"image": "jupyter/jupyterhub",
+					"ports": [{
+						"containerPort": 8000,
+						"hostPort": 8000	
+					}],
+					"volumeMounts": [{
+						"mountPath": "/srv/jupyterhub/",
+						"name": "jupyterhub-disk"
+					}],
+					"resources": {
+						"limits": {
+							"cpu": "200m",
+							"memory": "2000Mi"
+						}, 
+						"requests": {
+							"cpu": "10m",
+							"memory": "250Mi"
+						}
+					}
+				}],
+				"restartPolicy": "Always",
+				"dnsPolicy": "ClusterFirst",
+				"volumes": [{
+					"name": "jupyterhub-disk",
+					"gcePersistentDisk": {
+						"pdName": "jupyterhub",
+						"fsType": "ext4"
+					}
+				}]
+			}
+		}
+	}
+}
