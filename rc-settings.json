@@ -24,14 +24,14 @@
 			"spec": {
 				"containers": [{
 					"name": "jupyterhub",
-					"image": "jupyter/jupyterhub",
+					"image": "jupyter/notebook",
 					"ports": [{
 						"containerPort": 8888,
 						"hostPort": 8888	
 					}],
 					"volumeMounts": [{
 						"mountPath": "/notebooks",
-						"name": "jupyterhub-disk"
+						"name": "jupyter-disk"
 					}],
 					"resources": {
 						"limits": {
@@ -47,7 +47,7 @@
 				"restartPolicy": "Always",
 				"dnsPolicy": "ClusterFirst",
 				"volumes": [{
-					"name": "jupyterhub-disk",
+					"name": "jupyter-disk",
 					"gcePersistentDisk": {
 						"pdName": "jupyterhub",
 						"fsType": "ext4"
