@@ -29,6 +29,10 @@
 						"containerPort": 8888,
 						"hostPort": 8888	
 					}],
+					"command": [
+						"jupyter",
+						"notebook"
+					],
 					"volumeMounts": [{
 						"mountPath": "/notebooks",
 						"name": "jupyter-disk"
