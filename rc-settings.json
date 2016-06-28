@@ -30,8 +30,9 @@
 						"hostPort": 8888	
 					}],
 					"command": [
-						"jupyter",
-						"notebook"
+						"sh",
+						"-c",
+						"jupyter notebook --ip=* --no-browser --notebook-dir=/notebooks"
 					],
 					"volumeMounts": [{
 						"mountPath": "/notebooks",
